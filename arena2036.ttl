@@ -1,0 +1,27 @@
+@base <http://localhost:8880/> .
+@prefix arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+
+
+<current#delivery> a schema:Place ;
+	arena:hasSlot <current#deliverySlot1>, <current#deliverySlot2>.
+
+<current#deliverySlot1> a arena:Slot ;
+	schema:model <current#case> ;
+	arena:capacity 1 .
+	
+<current#deliverySlot2> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+
+
+<current#screwingStation1> a arena:Workstation ;
+	arena:hasSlot <current#screwingStation1Slot1>.
+		
+<current#screwingStation1Slot1> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 1 .
+	
+	
