@@ -1,12 +1,21 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.jena.query.ReadWrite;
+import org.apache.jena.rdfconnection.RDFConnection;
+import org.apache.jena.rdfconnection.RDFConnectionFuseki;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
@@ -18,15 +27,31 @@ public class Test {
 	public static void main(String[] args) throws MalformedURLException, SAXException, IOException, ParserConfigurationException, ParseException{
 		// TODO Auto-generated method stub
 		
-		//read in the file and start a server with it
+		ExecutorService es = Executors.newCachedThreadPool();
+		
+		//read in the file
 		Server server = new Server(new File("arena2036.ttl"));
 		server.start();
 		
-		//Agent ass = new Agent(new File("agent.n3"));
-		//ass.run();
-	
+		
+		try {
+		//try to start the server
+			RDFConnection conn = RDFConnectionFuseki.create().destination("" + Server.BASE_URI + "current").build();
+		    conn.begin(ReadWrite.READ);
+		    es.submit(new Agent(new File("ag.n3")));
+
+			conn.commit();
+			 System.out.println("zwei");
+			
+        } catch (Exception e){
+        	server.dumpResults();
+        	server.close();
+        	
+        } finally {
+		
 		server.dumpResults();
 		server.close();
+	}
 	}
 
 }

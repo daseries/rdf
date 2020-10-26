@@ -22,7 +22,7 @@ public class Server {
 	
 	private FusekiServer fuseki;
 	   
-    public static String BASE_URI = "http://localhost:8880/";
+    public static String BASE_URI = "http://localhost:2000/";
     
     private Dataset current;
 

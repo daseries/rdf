@@ -3,25 +3,427 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/> .
 
-<http://localhost:8880/current#screwingStation1Slot1>
+<http://localhost:2000/current#agentAssemble2>
+        a              arena:Agent ;
+        arena:program  "assemble.n3" .
+
+<http://localhost:2000/current#fl2>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl2Slot> .
+
+<http://localhost:2000/current#screwingStation1Slot2>
         a               arena:Slot ;
         arena:capacity  1 ;
-        schema:model    <http://localhost:8880/current#iotBoard> .
+        schema:model    <http://localhost:2000/current#motherboard> .
 
-<http://localhost:8880/current#deliverySlot2>
+<http://localhost:2000/current#agentAssemble1>
+        a              arena:Agent ;
+        arena:program  "assemble.n3" .
+
+<http://localhost:2000/current#solderingStation1Slot2>
         a               arena:Slot ;
-        arena:capacity  0 ;
-        schema:model    <http://localhost:8880/current#motherboard> .
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#temperatureSensor> .
 
-<http://localhost:8880/current#delivery>
-        a              schema:Place ;
-        arena:hasSlot  <http://localhost:8880/current#deliverySlot2> , <http://localhost:8880/current#deliverySlot1> .
+<http://localhost:2000/current#shipAction>
+        a                    schema:ConsumeAction ;
+        arena:rate           10000 ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:location      <http://localhost:2000/current#shipping> ;
+        schema:object        <http://localhost:2000/current#iotBoard> .
 
-<http://localhost:8880/current#screwingStation1>
+<http://localhost:2000/current#fl3Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#rackSlot2>
+        a               arena:Slot ;
+        arena:capacity  10 ;
+        schema:model    <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#solderingStation4>
         a              arena:Workstation ;
-        arena:hasSlot  <http://localhost:8880/current#screwingStation1Slot1> .
+        arena:hasSlot  <http://localhost:2000/current#solderingStation4Slot3> , <http://localhost:2000/current#solderingStation4Slot1> , <http://localhost:2000/current#solderingStation4Slot2> ;
+        arena:running  false .
 
-<http://localhost:8880/current#deliverySlot1>
+<http://localhost:2000/current#solderingStation3Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#agentTransfer1>
+        a              arena:Agent ;
+        arena:program  "transfer.n3" .
+
+<http://localhost:2000/current#screwingStation2Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> .
+
+<http://localhost:2000/current#solderingStation1Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#screwingStation1Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> .
+
+<http://localhost:2000/current#fl8>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl8Slot> .
+
+<http://localhost:2000/current#screwingStation3Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> .
+
+<http://localhost:2000/current#fl1>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl1Slot> .
+
+<http://localhost:2000/current#fl6Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#rackSlot1>
+        a               arena:Slot ;
+        arena:capacity  10 ;
+        schema:model    <http://localhost:2000/current#case> .
+
+<http://localhost:2000/current#screwingStation3>
+        a              arena:Workstation ;
+        arena:hasSlot  <http://localhost:2000/current#screwingStation3Slot1> , <http://localhost:2000/current#screwingStation3Slot2> , <http://localhost:2000/current#screwingStation3Slot3> ;
+        arena:running  false .
+
+<http://localhost:2000/current#rackSlot5>
+        a               arena:Slot ;
+        arena:capacity  10 ;
+        schema:model    <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#solderingStation3Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#processingUnit> .
+
+<http://localhost:2000/current#solderingStation2Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#processingUnit> .
+
+<http://localhost:2000/current#screwingStation4Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#fl10>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl10Slot> .
+
+<http://localhost:2000/current#fl4>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl4Slot> .
+
+<http://localhost:2000/current#fl5>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl5Slot> .
+
+<http://localhost:2000/current#case>
+        a                       schema:ProductModel ;
+        arena:counter           1 ;
+        schema:isAccessoryOrSparePartFor
+                <http://localhost:2000/current#iotBoard> ;
+        schema:potentialAction  <http://localhost:2000/current#rackToScrewingStationTransfer> , <http://localhost:2000/current#deliveryToRackTransfer> .
+
+<http://localhost:2000/current#screwingStation3Slot2>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#fl7Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#rackSlot4>
+        a               arena:Slot ;
+        arena:capacity  10 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#rackSlot3>
+        a               arena:Slot ;
+        arena:capacity  10 ;
+        schema:model    <http://localhost:2000/current#processingUnit> .
+
+<http://localhost:2000/current#fl10Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#processingUnit>
+        a                       schema:ProductModel ;
+        arena:counter           1 ;
+        schema:isAccessoryOrSparePartFor
+                <http://localhost:2000/current#motherboard> ;
+        schema:potentialAction  <http://localhost:2000/current#rackToSolderingStationTransfer> , <http://localhost:2000/current#deliveryToRackTransfer> .
+
+<http://localhost:2000/current#solderingStation2Slot2>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#screwingStation4>
+        a              arena:Workstation ;
+        arena:hasSlot  <http://localhost:2000/current#screwingStation4Slot3> , <http://localhost:2000/current#screwingStation4Slot2> , <http://localhost:2000/current#screwingStation4Slot1> ;
+        arena:running  false .
+
+<http://localhost:2000/current#deliverySlot2>
         a               arena:Slot ;
         arena:capacity  0 ;
-        schema:model    <http://localhost:8880/current#case> .
+        schema:model    <http://localhost:2000/current#processingUnit> .
+
+<http://localhost:2000/current#shipping>
+        a              schema:Place ;
+        arena:hasSlot  <http://localhost:2000/current#shippingSlot1> .
+
+<http://localhost:2000/current#screwingStation4Slot2>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#solderingStation4Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#screwingStation3Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#screwingStation1Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#fl1Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+schema:TransferAction
+        arena:rate  7000 .
+
+<http://localhost:2000/current#screwingStation4Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> .
+
+<http://localhost:2000/current#rackToScrewingStationTransfer>
+        a                    schema:TransferAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:fromLocation  <http://localhost:2000/current#rack> ;
+        schema:toLocation    <http://localhost:2000/current#screwingStation3> , <http://localhost:2000/current#screwingStation4> , <http://localhost:2000/current#screwingStation1> , <http://localhost:2000/current#screwingStation2> .
+
+<http://localhost:2000/current#motherboardAssemble>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:location      <http://localhost:2000/current#solderingStation4> , <http://localhost:2000/current#solderingStation3> , <http://localhost:2000/current#solderingStation1> , <http://localhost:2000/current#solderingStation2> ;
+        schema:object        <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#temperatureSensor> ;
+        schema:result        <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#rackToShippingTransfer>
+        a                    schema:TransferAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:fromLocation  <http://localhost:2000/current#rack> ;
+        schema:toLocation    <http://localhost:2000/current#shipping> .
+
+<http://localhost:2000/current#fl6>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl6Slot> .
+
+<http://localhost:2000/current#screwingStation1>
+        a              arena:Workstation ;
+        arena:hasSlot  <http://localhost:2000/current#screwingStation1Slot2> , <http://localhost:2000/current#screwingStation1Slot1> , <http://localhost:2000/current#screwingStation1Slot3> ;
+        arena:running  false .
+
+<http://localhost:2000/current#solderingStation4Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#processingUnit> .
+
+<http://localhost:2000/current#iotBoard>
+        a                       schema:ProductModel ;
+        arena:counter           1 ;
+        schema:potentialAction  <http://localhost:2000/current#rackToShippingTransfer> , <http://localhost:2000/current#screwingStationToRackTransfer> .
+
+<http://localhost:2000/current#solderingStation3Slot2>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#temperatureSensor> .
+
+arena:AssembleAction  arena:rate  10000 .
+
+<http://localhost:2000/current#fl9>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl9Slot> .
+
+<http://localhost:2000/current#motherboard>
+        a                       schema:ProductModel ;
+        arena:counter           1 ;
+        schema:isAccessoryOrSparePartFor
+                <http://localhost:2000/current#iotBoard> ;
+        schema:potentialAction  <http://localhost:2000/current#rackToScrewingStationTransfer> , <http://localhost:2000/current#solderingStationToRackTransfer> .
+
+<http://localhost:2000/current#solderingStation1Slot1>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#processingUnit> .
+
+<http://localhost:2000/current#screwingStation2Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#fl8Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#screwingStationToRackTransfer>
+        a                    schema:TransferAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:fromLocation  <http://localhost:2000/current#screwingStation3> , <http://localhost:2000/current#screwingStation4> , <http://localhost:2000/current#screwingStation1> , <http://localhost:2000/current#screwingStation2> ;
+        schema:toLocation    <http://localhost:2000/current#rack> .
+
+<http://localhost:2000/current#rackToSolderingStationTransfer>
+        a                    schema:TransferAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:fromLocation  <http://localhost:2000/current#rack> ;
+        schema:toLocation    <http://localhost:2000/current#solderingStation4> , <http://localhost:2000/current#solderingStation3> , <http://localhost:2000/current#solderingStation1> , <http://localhost:2000/current#solderingStation2> .
+
+<http://localhost:2000/current#deliverySlot3>
+        a               arena:Slot ;
+        arena:capacity  0 ;
+        schema:model    <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#rack>
+        a              schema:Place ;
+        arena:hasSlot  <http://localhost:2000/current#rackSlot2> , <http://localhost:2000/current#rackSlot1> , <http://localhost:2000/current#rackSlot5> , <http://localhost:2000/current#rackSlot4> , <http://localhost:2000/current#rackSlot3> .
+
+<http://localhost:2000/current#solderingStation4Slot2>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#deliverySlot1>
+        a               arena:Slot ;
+        arena:capacity  0 ;
+        schema:model    <http://localhost:2000/current#case> .
+
+<http://localhost:2000/current#deliveryToRackTransfer>
+        a                    schema:TransferAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:fromLocation  <http://localhost:2000/current#delivery> ;
+        schema:toLocation    <http://localhost:2000/current#rack> .
+
+<http://localhost:2000/current#solderingStationToRackTransfer>
+        a                    schema:TransferAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:fromLocation  <http://localhost:2000/current#solderingStation4> , <http://localhost:2000/current#solderingStation3> , <http://localhost:2000/current#solderingStation1> , <http://localhost:2000/current#solderingStation2> ;
+        schema:toLocation    <http://localhost:2000/current#rack> .
+
+<http://localhost:2000/current#iotBoardAssemble>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:location      <http://localhost:2000/current#screwingStation3> , <http://localhost:2000/current#screwingStation4> , <http://localhost:2000/current#screwingStation1> , <http://localhost:2000/current#screwingStation2> ;
+        schema:object        <http://localhost:2000/current#case> , <http://localhost:2000/current#motherboard> ;
+        schema:result        <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#fl2Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#agentTransfer2>
+        a              arena:Agent ;
+        arena:program  "transfer.n3" .
+
+<http://localhost:2000/current#fl5Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#temperatureSensor>
+        a                       schema:ProductModel ;
+        arena:counter           1 ;
+        schema:isAccessoryOrSparePartFor
+                <http://localhost:2000/current#motherboard> ;
+        schema:potentialAction  <http://localhost:2000/current#rackToSolderingStationTransfer> , <http://localhost:2000/current#deliveryToRackTransfer> .
+
+<http://localhost:2000/current#fl3>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl3Slot> .
+
+<http://localhost:2000/current#delivery>
+        a              schema:Place ;
+        arena:hasSlot  <http://localhost:2000/current#deliverySlot2> , <http://localhost:2000/current#deliverySlot3> , <http://localhost:2000/current#deliverySlot1> .
+
+<http://localhost:2000/current#screwingStation2>
+        a              arena:Workstation ;
+        arena:hasSlot  <http://localhost:2000/current#screwingStation2Slot1> , <http://localhost:2000/current#screwingStation2Slot3> , <http://localhost:2000/current#screwingStation2Slot2> ;
+        arena:running  false .
+
+<http://localhost:2000/current#solderingStation3>
+        a              arena:Workstation ;
+        arena:hasSlot  <http://localhost:2000/current#solderingStation3Slot3> , <http://localhost:2000/current#solderingStation3Slot1> , <http://localhost:2000/current#solderingStation3Slot2> ;
+        arena:running  false .
+
+<http://localhost:2000/current#solderingStation2Slot3>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#shippingSlot1>
+        a               arena:Slot ;
+        arena:capacity  5 ;
+        schema:model    <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#solderingStation1>
+        a              arena:Workstation ;
+        arena:hasSlot  <http://localhost:2000/current#solderingStation1Slot2> , <http://localhost:2000/current#solderingStation1Slot3> , <http://localhost:2000/current#solderingStation1Slot1> ;
+        arena:running  false .
+
+<http://localhost:2000/current#fl4Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#fl9Slot>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#iotBoard> , <http://localhost:2000/current#motherboard> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#fl7>
+        a              arena:Forklift ;
+        arena:hasSlot  <http://localhost:2000/current#fl7Slot> .
+
+<http://localhost:2000/current#screwingStation2Slot2>
+        a               arena:Slot ;
+        arena:capacity  1 ;
+        schema:model    <http://localhost:2000/current#motherboard> .
+
+<http://localhost:2000/current#deliverAction>
+        a                    schema:CreateAction ;
+        arena:rate           2000 ;
+        schema:actionStatus  schema:PotentialActionStatus ;
+        schema:location      <http://localhost:2000/current#delivery> ;
+        schema:result        <http://localhost:2000/current#case> , <http://localhost:2000/current#processingUnit> , <http://localhost:2000/current#temperatureSensor> .
+
+<http://localhost:2000/current#solderingStation2>
+        a              arena:Workstation ;
+        arena:hasSlot  <http://localhost:2000/current#solderingStation2Slot1> , <http://localhost:2000/current#solderingStation2Slot2> , <http://localhost:2000/current#solderingStation2Slot3> ;
+        arena:running  false .

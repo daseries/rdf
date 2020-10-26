@@ -1,27 +1,342 @@
-@base <http://localhost:8880/> .
+@base <http://localhost:2000/> .
 @prefix arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
 
+<current#agentTransfer1> a arena:Agent ;
+	arena:program "transfer.n3" .
+
+<current#agentAssemble1> a arena:Agent ;
+	arena:program "assemble.n3" .
+
+<current#agentTransfer2> a arena:Agent ;
+	arena:program "transfer.n3" .
+
+<current#agentAssemble2> a arena:Agent ;
+	arena:program "assemble.n3" .
+
+<current#iotBoard> a schema:ProductModel ;
+	schema:potentialAction <current#screwingStationToRackTransfer>, <current#rackToShippingTransfer> ;
+	arena:counter 1 .
+
+<current#motherboard> a schema:ProductModel ;
+	schema:isAccessoryOrSparePartFor <current#iotBoard> ;
+	schema:potentialAction <current#solderingStationToRackTransfer>, <current#rackToScrewingStationTransfer> ;
+	arena:counter 1 .
+
+<current#processingUnit> a schema:ProductModel ;
+	schema:isAccessoryOrSparePartFor <current#motherboard> ;
+	schema:potentialAction <current#deliveryToRackTransfer>, <current#rackToSolderingStationTransfer> ;
+	arena:counter 1 .
+
+<current#temperatureSensor> a schema:ProductModel ;
+	schema:isAccessoryOrSparePartFor <current#motherboard> ;
+	schema:potentialAction <current#deliveryToRackTransfer>, <current#rackToSolderingStationTransfer> ;
+	arena:counter 1 .
+
+<current#case> a schema:ProductModel ;
+	schema:isAccessoryOrSparePartFor <current#iotBoard> ;
+	schema:potentialAction <current#deliveryToRackTransfer>, <current#rackToScrewingStationTransfer> ;
+	arena:counter 1 .
+
+<current#deliveryToRackTransfer> a schema:TransferAction ;
+	schema:fromLocation <current#delivery> ;
+	schema:toLocation <current#rack> ;
+	schema:actionStatus schema:PotentialActionStatus .
+	
+<current#rackToScrewingStationTransfer> a schema:TransferAction ;
+	schema:fromLocation <current#rack> ;
+	schema:toLocation <current#screwingStation1>, <current#screwingStation2>, <current#screwingStation3>, <current#screwingStation4> ;
+	schema:actionStatus schema:PotentialActionStatus .
+	
+<current#rackToSolderingStationTransfer> a schema:TransferAction ;
+	schema:fromLocation <current#rack> ;
+	schema:toLocation <current#solderingStation1>, <current#solderingStation2>, <current#solderingStation3>, <current#solderingStation4> ;
+	schema:actionStatus schema:PotentialActionStatus .
+	
+<current#screwingStationToRackTransfer> a schema:TransferAction ;
+	schema:fromLocation <current#screwingStation1>, <current#screwingStation2>, <current#screwingStation3>, <current#screwingStation4> ;
+	schema:toLocation <current#rack> ;
+	schema:actionStatus schema:PotentialActionStatus .
+
+<current#solderingStationToRackTransfer> a schema:TransferAction ;
+	schema:fromLocation <current#solderingStation1>, <current#solderingStation2>, <current#solderingStation3>, <current#solderingStation4> ;
+	schema:toLocation <current#rack> ;
+	schema:actionStatus schema:PotentialActionStatus .
+
+<current#rackToShippingTransfer> a schema:TransferAction ;
+	schema:fromLocation <current#rack> ;
+	schema:toLocation <current#shipping> ;
+	schema:actionStatus schema:PotentialActionStatus .
+
+<current#iotBoardAssemble> a arena:AssembleAction ;
+	schema:actionStatus schema:PotentialActionStatus ;
+	schema:location <current#screwingStation1>, <current#screwingStation2>, <current#screwingStation3>, <current#screwingStation4> ;
+	schema:object <current#motherboard>, <current#case> ;
+	schema:result <current#iotBoard> .
+
+<current#motherboardAssemble> a arena:AssembleAction ;
+	schema:actionStatus schema:PotentialActionStatus ;
+	schema:location <current#solderingStation1>, <current#solderingStation2>, <current#solderingStation3>, <current#solderingStation4> ;
+	schema:object <current#processingUnit>, <current#temperatureSensor> ;
+	schema:result <current#motherboard> .
+
+<current#deliverAction> a schema:CreateAction ;
+	schema:actionStatus schema:PotentialActionStatus ;
+	schema:location <current#delivery> ;
+	schema:result <current#temperatureSensor>, <current#processingUnit>, <current#case> ;
+	arena:rate 2000 .
+
+<current#shipAction> a schema:ConsumeAction ;
+	schema:actionStatus schema:PotentialActionStatus ;
+	schema:location <current#shipping> ;
+	schema:object <current#iotBoard> ;
+	arena:rate 10000 .
+
+<current#fl1> a arena:Forklift ;
+	arena:hasSlot <current#fl1Slot> .
+
+<current#fl2> a arena:Forklift ;
+	arena:hasSlot <current#fl2Slot> .
+
+<current#fl3> a arena:Forklift ;
+	arena:hasSlot <current#fl3Slot> .
+
+<current#fl4> a arena:Forklift ;
+	arena:hasSlot <current#fl4Slot> .
+
+<current#fl5> a arena:Forklift ;
+	arena:hasSlot <current#fl5Slot> .
+
+<current#fl6> a arena:Forklift ;
+	arena:hasSlot <current#fl6Slot> .
+
+<current#fl7> a arena:Forklift ;
+	arena:hasSlot <current#fl7Slot> .
+
+<current#fl8> a arena:Forklift ;
+	arena:hasSlot <current#fl8Slot> .
+
+<current#fl9> a arena:Forklift ;
+	arena:hasSlot <current#fl9Slot> .
+
+<current#fl10> a arena:Forklift ;
+	arena:hasSlot <current#fl10Slot> .
+
+<current#fl1Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl2Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl3Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl4Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl5Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl6Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl7Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl8Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl9Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#fl10Slot> a arena:Slot ;
+	schema:model <current#motherboard>, <current#case>, <current#processingUnit>, <current#temperatureSensor>, <current#iotBoard> ;
+	arena:capacity 1 .
 
 <current#delivery> a schema:Place ;
-	arena:hasSlot <current#deliverySlot1>, <current#deliverySlot2>.
+	arena:hasSlot <current#deliverySlot1>, <current#deliverySlot2>, <current#deliverySlot3> .
 
 <current#deliverySlot1> a arena:Slot ;
 	schema:model <current#case> ;
 	arena:capacity 1 .
-	
+
 <current#deliverySlot2> a arena:Slot ;
+	schema:model <current#processingUnit> ;
+	arena:capacity 1 .
+
+<current#deliverySlot3> a arena:Slot ;
+	schema:model <current#temperatureSensor> ;
+	arena:capacity 1 .
+
+<current#shipping> a schema:Place ;
+	arena:hasSlot <current#shippingSlot1> .
+
+<current#shippingSlot1> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 5 .
+
+<current#rack> a schema:Place ;
+	arena:hasSlot <current#rackSlot1>, <current#rackSlot2>, <current#rackSlot3>, <current#rackSlot4>, <current#rackSlot5> .
+
+<current#rackSlot1> a arena:Slot ;
+	schema:model <current#case> ;
+	arena:capacity 10 .
+
+<current#rackSlot2> a arena:Slot ;
+	schema:model <current#temperatureSensor> ;
+	arena:capacity 10 .
+
+<current#rackSlot3> a arena:Slot ;
+	schema:model <current#processingUnit> ;
+	arena:capacity 10 .
+
+<current#rackSlot4> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 10 .
+
+<current#rackSlot5> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 10 .
+
+<current#screwingStation1> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#screwingStation1Slot1>, <current#screwingStation1Slot2>, <current#screwingStation1Slot3> .
+
+<current#screwingStation1Slot1> a arena:Slot ;
+	schema:model <current#case> ;
+	arena:capacity 1 .
+		
+<current#screwingStation1Slot2> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+		
+<current#screwingStation1Slot3> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#screwingStation2> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#screwingStation2Slot1>, <current#screwingStation2Slot2>, <current#screwingStation2Slot3> .
+
+<current#screwingStation2Slot1> a arena:Slot ;
+	schema:model <current#case> ;
+	arena:capacity 1 .
+		
+<current#screwingStation2Slot2> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+		
+<current#screwingStation2Slot3> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#screwingStation3> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#screwingStation3Slot1>, <current#screwingStation3Slot2>, <current#screwingStation3Slot3> .
+
+<current#screwingStation3Slot1> a arena:Slot ;
+	schema:model <current#case> ;
+	arena:capacity 1 .
+		
+<current#screwingStation3Slot2> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+		
+<current#screwingStation3Slot3> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#screwingStation4> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#screwingStation4Slot1>, <current#screwingStation4Slot2>, <current#screwingStation4Slot3> .
+
+<current#screwingStation4Slot1> a arena:Slot ;
+	schema:model <current#case> ;
+	arena:capacity 1 .
+		
+<current#screwingStation4Slot2> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+		
+<current#screwingStation4Slot3> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 1 .
+
+<current#solderingStation1> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#solderingStation1Slot1>, <current#solderingStation1Slot2>, <current#solderingStation1Slot3> .
+
+<current#solderingStation1Slot1> a arena:Slot ;
+	schema:model <current#processingUnit> ;
+	arena:capacity 1 .
+		
+<current#solderingStation1Slot2> a arena:Slot ;
+	schema:model <current#temperatureSensor> ;
+	arena:capacity 1 .
+		
+<current#solderingStation1Slot3> a arena:Slot ;
 	schema:model <current#motherboard> ;
 	arena:capacity 1 .
 
+<current#solderingStation2> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#solderingStation2Slot1>, <current#solderingStation2Slot2>, <current#solderingStation2Slot3> .
 
-<current#screwingStation1> a arena:Workstation ;
-	arena:hasSlot <current#screwingStation1Slot1>.
-		
-<current#screwingStation1Slot1> a arena:Slot ;
-	schema:model <current#iotBoard> ;
+<current#solderingStation2Slot1> a arena:Slot ;
+	schema:model <current#processingUnit> ;
 	arena:capacity 1 .
-	
-	
+		
+<current#solderingStation2Slot2> a arena:Slot ;
+	schema:model <current#temperatureSensor> ;
+	arena:capacity 1 .
+		
+<current#solderingStation2Slot3> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+
+<current#solderingStation3> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#solderingStation3Slot1>, <current#solderingStation3Slot2>, <current#solderingStation3Slot3> .
+
+<current#solderingStation3Slot1> a arena:Slot ;
+	schema:model <current#processingUnit> ;
+	arena:capacity 1 .
+		
+<current#solderingStation3Slot2> a arena:Slot ;
+	schema:model <current#temperatureSensor> ;
+	arena:capacity 1 .
+		
+<current#solderingStation3Slot3> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+
+<current#solderingStation4> a arena:Workstation ;
+	arena:running false ;
+	arena:hasSlot <current#solderingStation4Slot1>, <current#solderingStation4Slot2>, <current#solderingStation4Slot3> .
+
+<current#solderingStation4Slot1> a arena:Slot ;
+	schema:model <current#processingUnit> ;
+	arena:capacity 1 .
+		
+<current#solderingStation4Slot2> a arena:Slot ;
+	schema:model <current#temperatureSensor> ;
+	arena:capacity 1 .
+		
+<current#solderingStation4Slot3> a arena:Slot ;
+	schema:model <current#motherboard> ;
+	arena:capacity 1 .
+
+schema:TransferAction arena:rate 7000 .
+
+arena:AssembleAction arena:rate 10000 .
