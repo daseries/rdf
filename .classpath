@@ -16,22 +16,21 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/linked-data-fu-common-0.9.13-pr.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/linked-data-fu-datasets-0.9.13-pr.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/linked-data-fu-engine-0.9.13-pr.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/linked-data-fu-evaluators-0.9.13-pr.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/linked-data-fu-io-0.9.13-pr.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/linked-data-fu-operators-0.9.13-pr.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/linked-data-fu-standalone-0.9.13-pr.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-api-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-commons-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-jax-rs-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-model-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-model-datatypes-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-parsers-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-parsers-external-jsonld-jsonld_java-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-parsers-external-rdfa-semargl-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-parsers-external-rdfa-semargl-tagsoup-3.0.0-SNAPSHOT.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/jena_libraries/linked-data-fu-0.9.13-pr.0/linked-data-fu-0.9.13-pr.0/lib/nxparser-utilities-uri-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/linked-data-fu-common-0.9.13-mosaik-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/linked-data-fu-datasets-0.9.13-mosaik-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/linked-data-fu-engine-0.9.13-mosaik-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/linked-data-fu-evaluators-0.9.13-mosaik-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/linked-data-fu-io-0.9.13-mosaik-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/linked-data-fu-operators-0.9.13-mosaik-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/linked-data-fu-standalone-0.9.13-mosaik-1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-api-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-commons-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-model-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-model-datatypes-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-parsers-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-parsers-external-jsonld-jsonld_java-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-parsers-external-rdfa-semargl-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-parsers-external-rdfa-semargl-tagsoup-3.0.0-SNAPSHOT.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Sebi/Desktop/linked-data-fu-standalone-0.9.13-mosaik-1-bin/linked-data-fu-0.9.13-mosaik-1/lib/nxparser-utilities-uri-3.0.0-SNAPSHOT.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

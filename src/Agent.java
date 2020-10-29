@@ -42,11 +42,8 @@ public class Agent implements Runnable{
             // Parsing rules from the program
             ProgramConsumerImpl pc = new ProgramConsumerImpl(po);
             Notation3Parser parser = new Notation3Parser(new FileInputStream(programFile));
-            System.out.println("ja");
+
             parser.parse(pc, po);
-            
-            
-            System.out.println("nein");
             
             // Putting it all together
             program = pc.getProgram(po);
@@ -66,19 +63,19 @@ public class Agent implements Runnable{
     public void run() {
         // Configure ldfu to send only one request per run and choose this request randomly from the queue
         EvaluateProgramConfig config = new EvaluateProgramConfig();
-        config.setOutputOriginQueueDistinct(Distinct.ON);
-        config.setOutputOriginQueueStrategy(QueueStrategy.RANDOM);
         config.setThreadingModel(ThreadingModel.SERIAL);
 
         // Start ldfu
         EvaluateProgramGenerator engine = new EvaluateProgramGenerator(program, config);
         EvaluateProgram ep = engine.getEvaluateProgram();
         ep.start();
+       
         
         try {
-            while (true) {
-                ep.awaitIdleAndReset(20);
-            }
+        	 ep.shutdown();
+            //while (true) {
+              //  ep.awaitIdleAndReset(20);
+            //}
         } catch (InterruptedException e) {
             System.err.println("Agent " + this + " got interrupted!");
         }

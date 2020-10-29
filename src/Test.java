@@ -38,10 +38,10 @@ public class Test {
 		//try to start the server
 			RDFConnection conn = RDFConnectionFuseki.create().destination("" + Server.BASE_URI + "current").build();
 		    conn.begin(ReadWrite.READ);
-		    es.submit(new Agent(new File("ag.n3")));
-
+		    Agent ag = new Agent(new File("ag.n3"));
+		    ag.run();
+			
 			conn.commit();
-			 System.out.println("zwei");
 			
         } catch (Exception e){
         	server.dumpResults();

@@ -10,43 +10,26 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-    ?action  a schema:TransferAction .
-    
-    ( ?action "" ) string:uuid ?uuid .
+    ?delivery a schema:Place ;
+			arena:hasSlot ?slot .
+			
+	?slot a arena:Slot ;
+		arena:capacity ?capacity .
+			
 }
 =>
 {
     []  http:mthd httpm:POST ;
-        http:requestURI ?action ;
+        http:requestURI ?delivery;
         http:fieldName "Content-Type" ;
         http:fieldValue "application/sparql-update" ;
         http:body {
 
             []  a   sp:InsertData ;
-                    sp:data    ( <#ip2> <#ip3> <#ip4> <#ip5> <#ip6> <#ip7> ) .
+                    sp:data    ( <current#ip2> ) .
 
-            <#ip2>    sp:subject ?uuid ;
-                    sp:predicate rdf:type ;
-                    sp:object schema:TransferAction .
-
-            <#ip3>    sp:subject ?uuid ;
-                    sp:predicate schema:actionStatus ;
-                    sp:object schema:ActiveActionStatus .
-
-            <#ip4>    sp:subject ?uuid ;
-                    sp:predicate schema:fromLocation ;
-                    sp:object ?fromLocation .
-
-            <#ip5>    sp:subject ?uuid ;
-                    sp:predicate schema:toLocation ;
-                    sp:object ?toLocation .
-
-            <#ip6>    sp:subject ?uuid ;
-                    sp:predicate schema:instrument ;
-                    sp:object ?forklift .
-
-            <#ip7>    sp:subject ?uuid ;
-                    sp:predicate schema:object ;
-                    sp:object ?product .
+            <current#ip2>    sp:subject <current#forklift1> ;
+                    sp:predicate rdf:type  ;
+                    sp:object arena:Forklift .
         } .
 } .
