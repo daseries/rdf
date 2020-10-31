@@ -7,6 +7,7 @@ import java.net.URL;
 import java.util.Scanner;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -36,13 +37,12 @@ public class Test {
 		
 		try {
 		//try to start the server
-			RDFConnection conn = RDFConnectionFuseki.create().destination("" + Server.BASE_URI + "current").build();
-		    conn.begin(ReadWrite.READ);
-		    Agent ag = new Agent(new File("ag.n3"));
-		    ag.run();
-			
-			conn.commit();
-			
+
+		    es.submit(new Agent(new File("ag.n3")));
+		    
+		    es.shutdown();
+		    
+		    TimeUnit.MILLISECONDS.sleep(1000);
         } catch (Exception e){
         	server.dumpResults();
         	server.close();
@@ -51,7 +51,7 @@ public class Test {
 		
 		server.dumpResults();
 		server.close();
-	}
+        }
 	}
 
 }
