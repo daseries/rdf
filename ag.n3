@@ -10,25 +10,63 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
-    ?delivery a schema:Place ;
-			arena:hasSlot ?slot .
+    ?action a arena:AssembleAction ;
+    		schema:actionStatus schema:PotentialActionStatus .
+						
+	?rack a schema:Place ;
+		arena:hasSlot ?slot .
 			
 	?slot a arena:Slot ;
-		arena:capacity ?capacity .
+		schema:model ?model ;
+		arena:capacity ?capacity .	
+		
+	?capacity math:greaterThan "0"^^xsd:integer .
+	
+	
+	
+	?delivery a schema:Place ;
+		arena:hasSlot ?slot1 . 
+	
+	?slot1 a arena:Slot ;
+		schema:model ?model1 ;
+		arena:capacity ?capacity1 .
+	
+	?capacity1 math:lessThan "1"^^xsd:integer .
+	
+	?delivery a schema:Place ;
+		arena:hasSlot ?slot2 . 
+	
+	?slot2 a arena:Slot ;
+		schema:model ?model2 ;
+		arena:capacity ?capacity2 .
+	
+	?capacity2 math:lessThan "1"^^xsd:integer .
+	
+	?model1 log:notEqualTo ?model2 .
+	
+	
+	
+	
+	
+	( ?action "" ) string:uuid ?uuid .
 }
 =>
 {
     []  http:mthd httpm:POST ;
-        http:requestURI ?delivery;
+        http:requestURI ?rack;
         http:fieldName "Content-Type" ;
         http:fieldValue "application/sparql-update" ;
         http:body {
 
             []  a   sp:InsertData ;
-                    sp:data    ( <current#ip2> ) .
+                    sp:data    ( <current#ip1> <current#ip2> ) .
 
-            <current#ip2>    sp:subject <current#forklift1> ;
+            <current#ip1>    sp:subject ?uuid ;
                     sp:predicate rdf:type  ;
-                    sp:object arena:Forklift .
+                    sp:object arena:AssembleAction .
+           
+			<current#ip2>    sp:subject ?uuid ;
+                    sp:predicate schema:actionStatus  ;
+                    sp:object schema:ActiveActionStatus .
         } .
 } .

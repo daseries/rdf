@@ -3,13 +3,53 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/> .
 
-<file:/C:/Users/Sebi/eclipse-workspace/new/current#forklift1>
-        a       arena:Forklift .
+<http://localhost:2000/current#rackSlot1>
+        a               arena:Slot ;
+        arena:capacity  10 ;
+        schema:model    <http://localhost:2000/current#iotBoard> .
+
+<http://localhost:2000/current#motherboardAssemble-ebcdacdd-a074-4010-ac85-c813f49c11c1>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#deliverySlot2>
+        a               arena:Slot ;
+        arena:capacity  0 ;
+        schema:model    <http://localhost:2000/current#processingUnit> .
+
+<http://localhost:2000/current#motherboardAssemble-b210bcaa-3071-4439-9751-732f4eb5aa1c>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#motherboardAssemble>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:PotentialActionStatus .
+
+<http://localhost:2000/current#motherboardAssemble-3b925c8b-fdaf-42aa-a846-1779a56ef99b>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#motherboardAssemble-8b82ed90-c75f-4a9a-a202-c1de81cdb652>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#rack>
+        a              schema:Place ;
+        arena:hasSlot  <http://localhost:2000/current#rackSlot1> .
 
 <http://localhost:2000/current#deliverySlot1>
         a               arena:Slot ;
-        arena:capacity  1 .
+        arena:capacity  0 ;
+        schema:model    <http://localhost:2000/current#temperatureSensor> .
 
 <http://localhost:2000/current#delivery>
         a              schema:Place ;
-        arena:hasSlot  <http://localhost:2000/current#deliverySlot1> .
+        arena:hasSlot  <http://localhost:2000/current#deliverySlot2> , <http://localhost:2000/current#deliverySlot1> .
+
+<http://localhost:2000/current#motherboardAssemble-0d018897-38c6-47d8-b789-6775bd2c8e75>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#motherboardAssemble-e9b09ad3-00ef-4688-8480-7e36a285ca4e>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .

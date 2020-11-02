@@ -1,8 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,8 +12,6 @@ import org.apache.jena.query.DatasetFactory;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
-import org.apache.jena.sparql.core.DatasetGraph;
-import org.apache.jena.system.Txn;
 
 
 public class Server {
@@ -45,6 +41,7 @@ public class Server {
         //start the spawner, to fill the capacities
         Spawner spawner = new Spawner(current);
         spawner.fillDelivery();
+        new Thread(spawner).start();
         
         
         int port = 80;

@@ -5,10 +5,32 @@
 @prefix schema: <http://schema.org/> .
 
 <current#delivery> a schema:Place ;
-	arena:hasSlot <current#deliverySlot1> .
-
+	arena:hasSlot <current#deliverySlot1>, <current#deliverySlot2> .
+	
 <current#deliverySlot1> a arena:Slot ;
+	schema:model <current#temperatureSensor> ;
+	arena:capacity 1 .
+
+<current#deliverySlot2> a arena:Slot ;
+	schema:model <current#processingUnit> ;
 	arena:capacity 1 .
 
 
-		
+
+
+
+<current#rack> a schema:Place ;
+	arena:hasSlot <current#rackSlot1> .
+
+<current#rackSlot1> a arena:Slot ;
+	schema:model <current#iotBoard> ;
+	arena:capacity 10 .		
+	
+	
+	
+	
+	
+	
+	
+<current#motherboardAssemble> a arena:AssembleAction ;
+	schema:actionStatus schema:PotentialActionStatus .

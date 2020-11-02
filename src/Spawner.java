@@ -1,9 +1,6 @@
-import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.UUID;
 
-import org.apache.jena.datatypes.xsd.XSDDatatype;
 import org.apache.jena.query.Dataset;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -11,17 +8,14 @@ import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolutionMap;
 import org.apache.jena.query.ResultSet;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.Statement;
-import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.system.Txn;
 import org.apache.jena.update.UpdateAction;
 import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
+import org.apache.commons.math3.distribution.ExponentialDistribution;
 
-public class Spawner{
+public class Spawner  implements Runnable{
 
     private Dataset current;
     //
@@ -29,9 +23,15 @@ public class Spawner{
 
     // Manipulate the current triple store to add the product
     UpdateRequest request_current;
-	
+    
+ // Exponential distribution to get the duration of this specific action simulation
+    public static ExponentialDistribution sampler = null;
+
     public Spawner(Dataset current) {
     //initialize with current Dataset
+    	
+    sampler = new ExponentialDistribution(2000); 	
+    	
     this.current = current;
     
     //query for all the delivery models with a slot capacity greater than 0
@@ -73,8 +73,24 @@ public class Spawner{
     request_current = UpdateFactory.create(sb.toString());
     
     }    
+       
+    /**
+     * Spawn products in a loop
+     */
+    @Override
+    public void run() {
+        while(true) {
+            spawn();
 
-
+            long timeout = (long) sampler.sample();
+            try {
+                Thread.sleep(timeout);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
 	public boolean spawn() {
         //getting a list of all models that fulfill the "query_model" Query
         List<Resource> models = Txn.calculateRead(current, () -> {
