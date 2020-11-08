@@ -74,7 +74,7 @@ public class Agent implements Runnable{
         
         try {
             while (true) {
-                ep.awaitIdleAndReset(20);
+                ep.awaitIdleAndReset(1000);
             }
         } catch (InterruptedException e) {
             System.err.println("Agent " + this + " got interrupted!");

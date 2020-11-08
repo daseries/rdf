@@ -31,7 +31,7 @@ public class Test {
 		    
 		    es.shutdown();
 		    
-		    TimeUnit.MILLISECONDS.sleep(1000);
+		    TimeUnit.MILLISECONDS.sleep(2000);
         } catch (Exception e){
         	server.dumpResults();
         	server.close();

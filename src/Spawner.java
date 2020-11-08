@@ -30,7 +30,7 @@ public class Spawner  implements Runnable{
     public Spawner(Dataset current) {
     //initialize with current Dataset
     	
-    sampler = new ExponentialDistribution(2000); 	
+    sampler = new ExponentialDistribution(1000); 	
     	
     this.current = current;
     

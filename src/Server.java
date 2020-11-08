@@ -43,6 +43,9 @@ public class Server {
         spawner.fillDelivery();
         new Thread(spawner).start();
         
+        ActionRunner act = new ActionRunner(current);
+        new Thread(act).start();
+        
         
         int port = 80;
         Pattern portPattern = Pattern.compile("https?://.*:([0-9]+)/");

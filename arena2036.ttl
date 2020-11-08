@@ -32,5 +32,5 @@
 	
 	
 	
-<current#motherboardAssemble> a arena:AssembleAction ;
+<current#iotBoard> a arena:AssembleAction ;
 	schema:actionStatus schema:PotentialActionStatus .
