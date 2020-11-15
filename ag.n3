@@ -13,7 +13,7 @@
     ?action a arena:AssembleAction ;
     		schema:actionStatus schema:PotentialActionStatus .
 						
-	?rack a schema:Place ;
+	?shipping a schema:Place ;
 		arena:hasSlot ?slot .
 			
 	?slot a arena:Slot ;
@@ -31,7 +31,8 @@
 		schema:model ?model1 ;
 		arena:capacity ?capacity1 .
 	
-	?capacity1 math:lessThan "1"^^xsd:integer .
+	?capacity1 math:lessThan "10"^^xsd:integer .
+	
 	
 	?delivery a schema:Place ;
 		arena:hasSlot ?slot2 . 
@@ -40,7 +41,8 @@
 		schema:model ?model2 ;
 		arena:capacity ?capacity2 .
 	
-	?capacity2 math:lessThan "1"^^xsd:integer .
+	?capacity2 math:lessThan "10"^^xsd:integer .
+	
 	
 	?model1 log:notEqualTo ?model2 .
 	
@@ -51,7 +53,7 @@
 =>
 {
     []  http:mthd httpm:POST ;
-        http:requestURI ?rack;
+        http:requestURI ?shipping;
         http:fieldName "Content-Type" ;
         http:fieldValue "application/sparql-update" ;
         http:body {

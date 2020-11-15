@@ -1,3 +1,4 @@
+package nw;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -71,10 +72,9 @@ public class Agent implements Runnable{
         EvaluateProgram ep = engine.getEvaluateProgram();
         ep.start();
        
-        
         try {
             while (true) {
-                ep.awaitIdleAndReset(1000);
+                ep.awaitIdleAndReset(2000);
             }
         } catch (InterruptedException e) {
             System.err.println("Agent " + this + " got interrupted!");

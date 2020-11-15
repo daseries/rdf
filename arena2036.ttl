@@ -9,28 +9,25 @@
 	
 <current#deliverySlot1> a arena:Slot ;
 	schema:model <current#temperatureSensor> ;
-	arena:capacity 1 .
+	arena:capacity 10 .
 
 <current#deliverySlot2> a arena:Slot ;
 	schema:model <current#processingUnit> ;
-	arena:capacity 1 .
+	arena:capacity 10 .
 
 
 
+<current#shipping> a schema:Place ;
+	arena:hasSlot <current#shippingSlot1> .
 
-
-<current#rack> a schema:Place ;
-	arena:hasSlot <current#rackSlot1> .
-
-<current#rackSlot1> a arena:Slot ;
-	schema:model <current#iotBoard> ;
+<current#shippingSlot1> a arena:Slot ;
+	schema:model <current#motherboard> ;
 	arena:capacity 10 .		
 	
-	
-	
-	
-	
-	
-	
-<current#iotBoard> a arena:AssembleAction ;
+
+
+<current#motherboard> a arena:AssembleAction ;
 	schema:actionStatus schema:PotentialActionStatus .
+	
+
+	

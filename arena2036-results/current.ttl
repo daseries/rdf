@@ -3,36 +3,35 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/> .
 
-<http://localhost:2000/current#rackSlot1>
-        a               arena:Slot ;
-        arena:capacity  2 ;
-        schema:model    <http://localhost:2000/current#iotBoard> .
-
-<http://localhost:2000/current#iotBoard-b5dbf870-1eee-4f61-b012-e183cf71a7cf>
-        a                    arena:AssembleAction ;
-        schema:actionStatus  schema:ActiveActionStatus .
-
 <http://localhost:2000/current#deliverySlot2>
         a               arena:Slot ;
         arena:capacity  0 ;
         schema:model    <http://localhost:2000/current#processingUnit> .
 
-<http://localhost:2000/current#iotBoard-b323f9f6-e250-4a61-bce1-0cc032ecc72c>
+<http://localhost:2000/current#shipping>
+        a              schema:Place ;
+        arena:hasSlot  <http://localhost:2000/current#shippingSlot1> .
+
+<http://localhost:2000/current#motherboard-afd6a9f9-2c1b-4b41-a170-8aba196232ca>
         schema:actionStatus  schema:ActiveActionStatus .
 
-<http://localhost:2000/current#iotBoard>
+<http://localhost:2000/current#motherboard>
         a                    arena:AssembleAction ;
         schema:actionStatus  schema:PotentialActionStatus .
 
-<http://localhost:2000/current#rack>
-        a              schema:Place ;
-        arena:hasSlot  <http://localhost:2000/current#rackSlot1> .
+<http://localhost:2000/current#motherboard-1351d821-e107-4580-a0e4-901ccfe636a6>
+        schema:actionStatus  schema:ActiveActionStatus .
 
 <http://localhost:2000/current#deliverySlot1>
         a               arena:Slot ;
-        arena:capacity  0 ;
+        arena:capacity  3 ;
         schema:model    <http://localhost:2000/current#temperatureSensor> .
 
 <http://localhost:2000/current#delivery>
         a              schema:Place ;
         arena:hasSlot  <http://localhost:2000/current#deliverySlot2> , <http://localhost:2000/current#deliverySlot1> .
+
+<http://localhost:2000/current#shippingSlot1>
+        a               arena:Slot ;
+        arena:capacity  3 ;
+        schema:model    <http://localhost:2000/current#motherboard> .

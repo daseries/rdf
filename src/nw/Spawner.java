@@ -1,3 +1,4 @@
+package nw;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -104,7 +105,6 @@ public class Spawner  implements Runnable{
                     ms.add(res.next().get("model").asResource());
                     
                 }
-                System.out.println(ms);
                 return ms;
             }
         });

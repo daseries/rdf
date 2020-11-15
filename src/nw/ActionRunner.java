@@ -1,6 +1,4 @@
-
-import java.util.LinkedList;
-import java.util.List;
+package nw;
 
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 import org.apache.jena.query.Dataset;
@@ -9,15 +7,6 @@ import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.ResultSet;
-import org.apache.jena.rdf.model.Model;
-import org.apache.jena.rdf.model.Property;
-import org.apache.jena.rdf.model.RDFNode;
-import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.rdf.model.Statement;
-import org.apache.jena.rdf.model.StmtIterator;
-import org.apache.jena.rdf.model.impl.PropertyImpl;
-import org.apache.jena.rdf.model.impl.ResourceImpl;
-import org.apache.jena.rdf.model.impl.StatementImpl;
 import org.apache.jena.system.Txn;
 import org.apache.jena.update.UpdateAction;
 import org.apache.jena.update.UpdateFactory;
@@ -42,7 +31,7 @@ public class ActionRunner implements Runnable{
 		
 		this.current = current;
 		
-		sampler = new ExponentialDistribution(500);
+		sampler = new ExponentialDistribution(2000);
 	
 	//query for all the delivery models with a slot capacity greater than 0
 		StringBuilder sb = new StringBuilder();
@@ -69,7 +58,7 @@ public class ActionRunner implements Runnable{
 	    sb.append("    ?slot arena:capacity ?capacityMinusOne .\n");
 	    sb.append("}\n");
 	    sb.append("WHERE {\n");
-	    sb.append("    :rack a schema:Place ;\n");
+	    sb.append("    :shipping a schema:Place ;\n");
 	    sb.append("     	arena:hasSlot ?slot .\n");
 	    sb.append("    ?slot arena:capacity ?capacity .\n");
 	    sb.append("    BIND(?capacity - 1 AS ?capacityMinusOne)\n");

@@ -1,3 +1,4 @@
+package nw;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -13,7 +14,10 @@ import edu.kit.aifb.datafu.parser.notation3.ParseException;
 
 
 public class Test {
-
+	
+	public static int ship_count = 0;
+	
+	
 	public static void main(String[] args) throws MalformedURLException, SAXException, IOException, ParserConfigurationException, ParseException{
 		// TODO Auto-generated method stub
 		
@@ -24,22 +28,25 @@ public class Test {
 		server.start();
 		
 		
+		
+		
 		try {
 		//try to start the server
 
 		    es.submit(new Agent(new File("ag.n3")));
-		    
 		    es.shutdown();
 		    
-		    TimeUnit.MILLISECONDS.sleep(2000);
+		    TimeUnit.MILLISECONDS.sleep(10000);
         } catch (Exception e){
         	server.dumpResults();
         	server.close();
+        	System.out.println("Es wurden " + ship_count + " IoT-Boards verschifft!");
         	
         } finally {
 		
 		server.dumpResults();
 		server.close();
+		System.out.println("Es wurden " + ship_count + " IoT-Boards verschifft!");
         }
 	}
 

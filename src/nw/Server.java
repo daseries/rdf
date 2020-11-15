@@ -1,3 +1,4 @@
+package nw;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -40,8 +41,11 @@ public class Server {
         
         //start the spawner, to fill the capacities
         Spawner spawner = new Spawner(current);
-        spawner.fillDelivery();
         new Thread(spawner).start();
+        
+        
+        Consumer consumer = new Consumer(current);
+        new Thread(consumer).start();
         
         ActionRunner act = new ActionRunner(current);
         new Thread(act).start();
