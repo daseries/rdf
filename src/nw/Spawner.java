@@ -17,22 +17,27 @@ import org.apache.jena.update.UpdateRequest;
 import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 public class Spawner  implements Runnable{
+	// Spawns products at the given rate (Exponential Distribution)
+	public static int exp_dis = 1000;
 
+	// Reference to the current triple store
     private Dataset current;
-    //
+    
+    //Query to get the product models that should be delivered
     private Query query_model;
 
-    // Manipulate the current triple store to add the product
+    // Request the current triple store to add the product
     UpdateRequest request_current;
     
- // Exponential distribution to get the duration of this specific action simulation
+	// Exponential distribution to get the duration of this specific action simulation
     public static ExponentialDistribution sampler = null;
 
     public Spawner(Dataset current) {
-    //initialize with current Dataset
+    
     	
-    sampler = new ExponentialDistribution(1000); 	
+    sampler = new ExponentialDistribution(exp_dis); 	
     	
+  //initialize with current Dataset
     this.current = current;
     
     //query for all the delivery models with a slot capacity greater than 0
@@ -50,7 +55,7 @@ public class Spawner  implements Runnable{
     sb.append("}\n");
     query_model = QueryFactory.create(sb.toString());
     
-    //setting all capacities greater than 0 to 0
+    //setting all capacities greater than 0 to capacity-1
     sb = new StringBuilder();
     sb.append("PREFIX : <" + Server.BASE_URI + "current#>\n");
     sb.append("PREFIX arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/>\n");
@@ -82,7 +87,7 @@ public class Spawner  implements Runnable{
     public void run() {
         while(true) {
             spawn();
-
+            nw.Test.stats[0] =  nw.Test.stats[0] + 1;
             long timeout = (long) sampler.sample();
             try {
                 Thread.sleep(timeout);
@@ -93,7 +98,7 @@ public class Spawner  implements Runnable{
     }
     
 	public boolean spawn() {
-        //getting a list of all models that fulfill the "query_model" Query
+        //getting a Resource list of all models that fulfill the "query_model" Query
         List<Resource> models = Txn.calculateRead(current, () -> {
             try(QueryExecution qexec = QueryExecutionFactory.create(query_model, current)) {
                 ResultSet res = qexec.execSelect();
@@ -110,15 +115,19 @@ public class Spawner  implements Runnable{
         });
         //update the model with the request_current Query
         if(models != null) {
+        	//Random item of the list is determined to be delivered
+        	int rand = models.size();
+        	rand = (int)Math.round(Math.random() * (rand - 1));
 
-            Resource model = models.get(0);
+            Resource model = models.get(rand);
 
             QuerySolutionMap bindings = new QuerySolutionMap();
             bindings.add("model", model);
             Txn.executeWrite(current, () -> {
                 UpdateAction.execute(request_current, current, bindings);
+                
             });
-
+            
             return true;
         } else {
             return false;

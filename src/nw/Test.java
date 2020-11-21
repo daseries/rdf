@@ -15,38 +15,46 @@ import edu.kit.aifb.datafu.parser.notation3.ParseException;
 
 public class Test {
 	
-	public static int ship_count = 0;
+	// array for the statistics (Delivered Items/Assembled Motherboards/ Shipped Motherboards)
+	public static int[] stats = new int[3];
+	
+	//Runtime of the program
+	public static int runtime = 10000;
 	
 	
 	public static void main(String[] args) throws MalformedURLException, SAXException, IOException, ParserConfigurationException, ParseException{
 		// TODO Auto-generated method stub
 		
+		//ExecutorService for the LDFU Agent
 		ExecutorService es = Executors.newCachedThreadPool();
 		
-		//read in the file
+		//Read in the Knowledge Graph (File) and start the server
 		Server server = new Server(new File("arena2036.ttl"));
 		server.start();
 		
-		
-		
-		
 		try {
-		//try to start the server
-
+			//trying to read in the agent file and start the LDFU Agent
 		    es.submit(new Agent(new File("ag.n3")));
 		    es.shutdown();
-		    
-		    TimeUnit.MILLISECONDS.sleep(10000);
+		   
+		    TimeUnit.MILLISECONDS.sleep(runtime);
         } catch (Exception e){
+        	//get the current status of the knowledge graph and shutting down the server
         	server.dumpResults();
         	server.close();
-        	System.out.println("Es wurden " + ship_count + " IoT-Boards verschifft!");
+        	System.out.println("Delivered Items: " + stats[0]);
+        	System.out.println("Assembled Motherboards: " + stats[1]);
+        	System.out.println("Shipped Motherboards: " + stats[2]);
+        	System.exit(0);
         	
         } finally {
-		
+        //get the current status of the knowledge graph and shutting down the server
 		server.dumpResults();
 		server.close();
-		System.out.println("Es wurden " + ship_count + " IoT-Boards verschifft!");
+		System.out.println("Delivered Items: " + stats[0]);
+    	System.out.println("Assembled Motherboards: " + stats[1]);
+    	System.out.println("Shipped Motherboards: " + stats[2]);
+		System.exit(0);
         }
 	}
 

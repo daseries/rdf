@@ -22,14 +22,20 @@ import org.apache.jena.update.UpdateFactory;
 import org.apache.jena.update.UpdateRequest;
 
 
- // Consumes products at a given rate
+
   
 
 public class Consumer implements Runnable {
-    // References to triple stores
+	 // Consumes products at the given rate (Exponential Distribution)
+	public static int exp_dis = 1000;
+	
+    // Reference to the current triple store	
     private Dataset current;
 
+    //Query which product should be consumed
     private Query shipping_product;
+    
+    //Request to consume the product determined by the shipping_product Query
     private UpdateRequest request_current;
     
     // Exponential distribution to get the duration of this specific action simulation
@@ -47,8 +53,9 @@ public class Consumer implements Runnable {
     public Consumer(Dataset current) {
 
         this.current = current;
-        sampler = new ExponentialDistribution(1000); 
+        sampler = new ExponentialDistribution(exp_dis); 
 
+      //Request to consume the product determined by the shipping_product Query
         StringBuilder sb = new StringBuilder();
         sb.append("PREFIX : <" + Server.BASE_URI + "current#>\n");
         sb.append("PREFIX arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/>\n");
@@ -57,7 +64,8 @@ public class Consumer implements Runnable {
         sb.append("PREFIX schema: <http://schema.org/>\n");
         sb.append("SELECT ?model\n");
         sb.append("WHERE {\n");
-        sb.append("    :shipping a schema:Place .\n");
+        sb.append("    :shipping a schema:Place ;\n");
+        sb.append("    	arena:hasSlot ?slot .\n");
         sb.append("    ?slot arena:capacity ?capacity ;\n");
         sb.append("        schema:model ?model .\n");
         sb.append("    FILTER(?capacity < 10)\n");
@@ -65,6 +73,8 @@ public class Consumer implements Runnable {
         sb.append("LIMIT 1\n");
         shipping_product = QueryFactory.create(sb.toString());
 
+        
+     // Exponential distribution to get the duration of this specific action simulation
         sb = new StringBuilder();
         sb.append("PREFIX : <" + Server.BASE_URI + "current#>\n");
         sb.append("PREFIX arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/>\n");
@@ -88,38 +98,39 @@ public class Consumer implements Runnable {
     }
 
     /**
-     * Getting a product, moving it from current to history triple store and deleting
-     * it location in a loop
+     * Getting a product and deleting it from the current triple store
      */
     @Override
     public void run() {
         while(true) {
+        	//Query a list of the products to be consumed 
         	List<Resource> models = Txn.calculateRead(current, () -> {
                 try(QueryExecution qexec = QueryExecutionFactory.create(shipping_product, current)) {
                     ResultSet res = qexec.execSelect();
-                    if(!res.hasNext()) {
-                        return null;
-                    }
+                    
+                    //Getting the next product to be consumed as a Resource
                     List<Resource> ms = new LinkedList<>();
-                    while(res.hasNext()) {
+                    if(res.hasNext()) {
                         ms.add(res.next().get("model").asResource());
-                        
+                        return ms;
                     }
-                    System.out.println(ms);
-                    return ms;
+                    return null;
+                   
                 }
             });
             //update the model with the request_current Query
             if(models != null) {
-
+            	
                 Resource model = models.get(0);
 
                 QuerySolutionMap bindings = new QuerySolutionMap();
+                //binding the model, determined for the product to be consumed, into the request_current query
                 bindings.add("model", model);
                 Txn.executeWrite(current, () -> {
                     UpdateAction.execute(request_current, current, bindings);
                 });
-                nw.Test.ship_count = nw.Test.ship_count + 1;
+                nw.Test.stats[2] = nw.Test.stats[2] + 1;
+                
             }
             // Sleep for random time
             long timeout = (long) sampler.sample();

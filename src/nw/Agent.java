@@ -22,6 +22,9 @@ import edu.kit.aifb.datafu.utils.Config.QueueStrategy;
 public class Agent implements Runnable{
 	 // The program of this agent
     private Program program;
+    
+    //Time the Agent sleeps between choosing requests from the queue
+    public static int sleeptime = 1000;
 
     /**
      * Constructor for an agent
@@ -33,7 +36,7 @@ public class Agent implements Runnable{
      */
     public Agent(File programFile) throws FileNotFoundException, ParseException {
         try {
-            // Declaring program file and server as inputs for ldfu
+            // Declaring program file and server as inputs for the LDFU
         	
             RequestOrigin io = new RequestOrigin(new URI("" + Server.BASE_URI + "current"), Request.Method.GET);
             FileOrigin po = new FileOrigin(programFile, FileOrigin.Mode.READ, null);
@@ -60,21 +63,20 @@ public class Agent implements Runnable{
      */
     @Override
     public void run() {
-        // Configure ldfu to send only one request per run and choose this request randomly from the queue
+        // Configure LDFU to send only one request per run and choose this request randomly from the queue
         EvaluateProgramConfig config = new EvaluateProgramConfig();
         config.setOutputOriginQueueDistinct(Distinct.ON);
         config.setOutputOriginQueueStrategy(QueueStrategy.RANDOM);
         config.setThreadingModel(ThreadingModel.SERIAL);
 
-
-        // Start ldfu
+        // Start LDFU
         EvaluateProgramGenerator engine = new EvaluateProgramGenerator(program, config);
         EvaluateProgram ep = engine.getEvaluateProgram();
         ep.start();
        
         try {
             while (true) {
-                ep.awaitIdleAndReset(2000);
+                ep.awaitIdleAndReset(sleeptime);
             }
         } catch (InterruptedException e) {
             System.err.println("Agent " + this + " got interrupted!");
