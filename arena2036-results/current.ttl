@@ -3,17 +3,13 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/> .
 
-<http://localhost:2000/current#motherboard-88866b0d-882f-4efd-ac99-8557244fe4c3>
-        a                    arena:AssembleAction ;
-        schema:actionStatus  schema:ActiveActionStatus .
-
-<http://localhost:2000/current#motherboard-d4b0df9d-3412-4f76-99b1-251e1ec903b8>
+<http://localhost:2000/current#motherboard-49dd02cc-e02c-4994-b650-a95b45c55ec3>
         a                    arena:AssembleAction ;
         schema:actionStatus  schema:ActiveActionStatus .
 
 <http://localhost:2000/current#deliverySlot2>
         a               arena:Slot ;
-        arena:capacity  8 ;
+        arena:capacity  5 ;
         schema:model    <http://localhost:2000/current#processingUnit> .
 
 <http://localhost:2000/current#shipping>
@@ -26,7 +22,7 @@
 
 <http://localhost:2000/current#deliverySlot1>
         a               arena:Slot ;
-        arena:capacity  7 ;
+        arena:capacity  8 ;
         schema:model    <http://localhost:2000/current#temperatureSensor> .
 
 <http://localhost:2000/current#delivery>
@@ -35,5 +31,5 @@
 
 <http://localhost:2000/current#shippingSlot1>
         a               arena:Slot ;
-        arena:capacity  9 ;
+        arena:capacity  10 ;
         schema:model    <http://localhost:2000/current#motherboard> .

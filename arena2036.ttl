@@ -4,6 +4,12 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix schema: <http://schema.org/> .
 
+
+# Triple Store with
+# Delivery Place with 2 Slots, which each have a capacity of 10
+# Shipping Place with 1 Slot, with a capacity of 10
+# Assemble Action with actionStatus:PotentialActionStatus
+
 <current#delivery> a schema:Place ;
 	arena:hasSlot <current#deliverySlot1>, <current#deliverySlot2> .
 	

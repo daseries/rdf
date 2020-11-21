@@ -10,9 +10,11 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#> .
 
 {
+# Asking for an Assemble Action with PotentialActionStatus
     ?action a arena:AssembleAction ;
     		schema:actionStatus schema:PotentialActionStatus .
-						
+    		
+# Asking for a Place with a slot for some model with a capacity greater than 0
 	?shipping a schema:Place ;
 		arena:hasSlot ?slot .
 			
@@ -23,7 +25,7 @@
 	?capacity math:greaterThan "0"^^xsd:integer .
 	
 	
-	
+# Asking for another Place with a slot for some model with a capacity less than 10
 	?delivery a schema:Place ;
 		arena:hasSlot ?slot1 . 
 	
@@ -33,7 +35,7 @@
 	
 	?capacity1 math:lessThan "10"^^xsd:integer .
 	
-	
+# Asking for another Place with a slot for some model with a capacity less than 10
 	?delivery a schema:Place ;
 		arena:hasSlot ?slot2 . 
 	
@@ -43,15 +45,16 @@
 	
 	?capacity2 math:lessThan "10"^^xsd:integer .
 	
-	
+# model1 and model2 can not be the same
 	?model1 log:notEqualTo ?model2 .
 	
 	
-	
+# getting the uuid of the action from above
 	( ?action "" ) string:uuid ?uuid .
 }
 =>
 {
+# request URI is not really necessary since it is only 1 Triple Store!! It determines to -> http://localhost:2000/
     []  http:mthd httpm:POST ;
         http:requestURI ?shipping;
         http:fieldName "Content-Type" ;
@@ -61,6 +64,7 @@
             []  a   sp:InsertData ;
                     sp:data    ( <current#ip1> <current#ip2> ) .
 
+# posting the action uuid as an Assmble Action with ActiveActionStatus
             <current#ip1>    sp:subject ?uuid ;
                     sp:predicate rdf:type  ;
                     sp:object arena:AssembleAction .
