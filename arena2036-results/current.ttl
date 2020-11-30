@@ -3,7 +3,19 @@
 @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix arena: <http://paul.ti.rw.fau.de/~pi69geby/arena/> .
 
-<http://localhost:2000/current#motherboard-49dd02cc-e02c-4994-b650-a95b45c55ec3>
+<http://localhost:2000/current#motherboard-57f17574-791d-495a-985c-9049861b7a26>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#motherboard-aff0b28d-b205-4ee2-bce9-68e569f79448>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#motherboard-4106970b-c7fa-4344-a714-cd1f402a0b9a>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#motherboard-84f728eb-711f-468c-9c56-1cb3b3a18e52>
         a                    arena:AssembleAction ;
         schema:actionStatus  schema:ActiveActionStatus .
 
@@ -20,14 +32,26 @@
         a                    arena:AssembleAction ;
         schema:actionStatus  schema:PotentialActionStatus .
 
+<http://localhost:2000/current#motherboard-6235a110-c3c0-4870-87a9-318a4d7b6b8b>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
 <http://localhost:2000/current#deliverySlot1>
         a               arena:Slot ;
-        arena:capacity  8 ;
+        arena:capacity  7 ;
         schema:model    <http://localhost:2000/current#temperatureSensor> .
 
 <http://localhost:2000/current#delivery>
         a              schema:Place ;
         arena:hasSlot  <http://localhost:2000/current#deliverySlot2> , <http://localhost:2000/current#deliverySlot1> .
+
+<http://localhost:2000/current#motherboard-58eda93d-e355-494d-8503-61a4b66149b8>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
+
+<http://localhost:2000/current#motherboard-b5472ad8-87bb-4d7e-8070-c8df359808e7>
+        a                    arena:AssembleAction ;
+        schema:actionStatus  schema:ActiveActionStatus .
 
 <http://localhost:2000/current#shippingSlot1>
         a               arena:Slot ;

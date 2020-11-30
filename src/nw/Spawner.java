@@ -18,7 +18,11 @@ import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 public class Spawner  implements Runnable{
 	// Spawns products at the given rate (Exponential Distribution)
+	//timeout the spawner, so that it is not running & spawning products constantly
 	public static int exp_dis = 1000;
+	
+	// Exponential distribution to get the duration of this specific action simulation
+    public static ExponentialDistribution sampler = null;
 
 	// Reference to the current triple store
     private Dataset current;
@@ -28,12 +32,8 @@ public class Spawner  implements Runnable{
 
     // Request the current triple store to add the product
     UpdateRequest request_current;
-    
-	// Exponential distribution to get the duration of this specific action simulation
-    public static ExponentialDistribution sampler = null;
 
     public Spawner(Dataset current) {
-    
     	
     sampler = new ExponentialDistribution(exp_dis); 	
     	

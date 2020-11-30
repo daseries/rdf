@@ -27,8 +27,12 @@ import org.apache.jena.update.UpdateRequest;
 
 public class Consumer implements Runnable {
 	 // Consumes products at the given rate (Exponential Distribution)
+	//timeout the consumer, so that it is not running & consuming products constantly
 	public static int exp_dis = 1000;
 	
+	 // Exponential distribution to get the duration of this specific action simulation
+    public static ExponentialDistribution sampler = null;
+
     // Reference to the current triple store	
     private Dataset current;
 
@@ -38,9 +42,7 @@ public class Consumer implements Runnable {
     //Request to consume the product determined by the shipping_product Query
     private UpdateRequest request_current;
     
-    // Exponential distribution to get the duration of this specific action simulation
-    public static ExponentialDistribution sampler = null;
-
+   
     /** 
      * Set the lambda of the exponential distribution
      */

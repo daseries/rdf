@@ -40,8 +40,7 @@ public class Agent implements Runnable{
         	
             RequestOrigin io = new RequestOrigin(new URI("" + Server.BASE_URI + "current"), Request.Method.GET);
             FileOrigin po = new FileOrigin(programFile, FileOrigin.Mode.READ, null);
-            
-            
+                   
             // Parsing rules from the program
             ProgramConsumerImpl pc = new ProgramConsumerImpl(po);
             Notation3Parser parser = new Notation3Parser(new FileInputStream(programFile));
